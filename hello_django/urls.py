@@ -16,42 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
-
-def greeting(request):
-    return HttpResponse("Hello Whiskey")
-
-def square(request, base):
-    area = base ** 2
-    return HttpResponse(area)
-
-def triangle(request, base, height):
-    area = base * height * .5
-    return HttpResponse(area)
-
-def rectangle_area(request, height, width):
-    area = height * width
-    return HttpResponse(area)
-
-def rectangle_perimeter(request, height, width):
-    perimeter = (2 * height) + (2 * width)
-    return HttpResponse(perimeter)
-
-def circle_area(request, radius):
-    area = 3.14 * radius ** 2
-    return HttpResponse(area)
-
-def circle_perimeter(request, radius):
-    perimeter = 2 * 3.14 * radius ** 2
-    return HttpResponse(perimeter)
+from geometry_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', greeting),
-    path('square/<int:base>/', square),
-    path('triangle/base/<int:base>/height/<int:height>/', triangle),
-    path('rectangle/area/<int:height>/<int:width>/', rectangle_area),
-    path('rectanage/perimeter/<int:height>/<int:width>/', rectangle_perimeter),
-    path('circle/area/<int:radius>/', circle_area),
-    path('circle/perimeter/<int:radius>/', circle_perimeter),
+    path('square/<int:base>/', views.square),
+    path('triangle/base/<int:base>/height/<int:height>/', views.triangle),
+    path('rectangle/area/<int:height>/<int:width>/', views.rectangle_area),
+    path('rectanage/perimeter/<int:height>/<int:width>/', views.rectangle_perimeter),
+    path('circle/area/<int:radius>/', views.circle_area),
+    path('circle/perimeter/<int:radius>/', views.circle_perimeter),
 ]
